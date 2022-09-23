@@ -3,25 +3,33 @@ package javaplaygroud;
 import java.util.Scanner;
 
 public class Calendar {
-
-	public static void main(String[] args) {
-		System.out.println(" ÀÏ ¿ù È­ ¼ö ¸ñ ±İ Åä");
+    
+	private static final int[] MAX_DAYS = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	public int getmaxDaysOfmonth(int month) {
+		return MAX_DAYS[month-1];
+	}
+	
+	public void printSampleCalendar() {
+		System.out.println(" ì¼ ì›” í™” ìˆ˜ ëª© ê¸ˆ í† ");
 		System.out.println("--------------------");
 		System.out.println(" 1  2  3  4  5  6  7 ");
 		System.out.println(" 8  9 10 11 12 13 14");
 		System.out.println("15 16 17 18 19 20 21");
 		System.out.println("22 23 24 25 26 27 28");
+	}
+
+	public static void main(String[] args) {
 		
-		
-		
-		//¼ıÀÚ¸¦ ÀÔ·Â¹Ş¾Æ ÇØ´çÇÏ´Â ´ŞÀÇ ÃÖ´ë ÀÏ¼ö¸¦ Ãâ·ÂÇÏ´Â ÇÁ·Î±×·¥
+		//ìˆ«ìë¥¼ ì…ë ¥ë°›ì•„ í•´ë‹¹í•˜ëŠ” ë‹¬ì˜ ìµœëŒ€ ì¼ìˆ˜ë¥¼ ì¶œë ¥í•˜ëŠ” í”„ë¡œê·¸ë¨
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("´ŞÀ» ÀÔ·ÂÇÏ¼¼¿ä.");
+		Calendar cal = new Calendar();
+		System.out.println("ë‹¬ì„ ì…ë ¥í•˜ì„¸ìš”.");
 		int month = scanner.nextInt();
 		
-		int[] maxDays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+		System.out.printf("%dì›”ì€ %dì¼ê¹Œì§€ ìˆìŠµë‹ˆë‹¤.\n", month,cal.getmaxDaysOfmonth(month));
 		
-		System.out.printf("%d¿ùÀº %dÀÏ±îÁö ÀÖ½À´Ï´Ù.\n", month, maxDays[month-1]);
+		cal.printSampleCalendar();
+		
 		scanner.close();
 
 	}
