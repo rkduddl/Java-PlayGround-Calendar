@@ -2,6 +2,9 @@ package javaplaygroud;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -9,7 +12,7 @@ public class Calendar {
 
 	private static final int[] MAX_DAYS = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 	private static final int[] LEAP_MAX_DAYS = { 0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-
+	private static final String SAVE_FILE = "calendar.dat";
 	private HashMap<Date, PlanItem> planMap;
 
 	public Calendar() {
@@ -17,9 +20,19 @@ public class Calendar {
 	}
 
 	public void ragisterplan(String strDate, String plan) {
-
-		PlanItem p = new PlanItem(strDate,plan);
+		PlanItem p = new PlanItem(strDate, plan);
 		planMap.put(p.getDate(), p);
+
+		File f = new File(SAVE_FILE);
+		String item = p.saveString();
+		try {
+			FileWriter fw = new FileWriter(f);
+			fw.write(item);
+			fw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	public PlanItem searchPlan(String strDate) {
